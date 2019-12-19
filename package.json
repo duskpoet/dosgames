@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "watch": "shadow-cljs watch main",
-    "release": "shadow-cljs release main && cp -r public/* docs/"
+    "release": "shadow-cljs release main && gh-pages -d public"
   },
   "devDependencies": {
+    "gh-pages": "^2.1.1",
     "shadow-cljs": "2.8.83"
   },
   "dependencies": {

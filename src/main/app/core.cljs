@@ -8,7 +8,7 @@
 (def controls-scheme
   [{:id "left"
     :code 37}
-
+          
    {:id "right"
     :code 39}
 
