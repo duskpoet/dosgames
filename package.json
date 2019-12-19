@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "watch": "shadow-cljs watch main",
-    "release": "shadow-cljs release main && cp -r public/ docs"
+    "release": "shadow-cljs release main && cp -r public/* docs/"
   },
   "devDependencies": {
     "shadow-cljs": "2.8.83"

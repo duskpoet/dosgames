@@ -24,17 +24,35 @@
    {:id "enter"
     :code 13}])
 
+(defn listen-touch [el press cb]
+  (events/listen
+    el
+    (if press
+      events/EventType.TOUCHSTART
+      events/EventType.TOUCHEND)
+    (fn [evt]
+      (.preventDefault evt)
+      (cb)))
+  (events/listen
+    el
+    (if press
+      events/EventType.MOUSEDOWN
+      events/EventType.MOUSEUP)
+    (fn [evt]
+      (.preventDefault evt)
+      (cb))))
+
 (defn setup-keys [ci controls]
   (doseq [c controls]
     (let [{:keys [id code]} c
           el (dom/getElement id)]
-      (events/listen
+      (listen-touch
        el
-       events/EventType.MOUSEDOWN
+       true
        #(.simulateKeyEvent ci code true))
-      (events/listen
+      (listen-touch
        el
-       events/EventType.MOUSEUP
+       false
        #(.simulateKeyEvent ci code false)))))
 
 (defn fullscreen []
@@ -43,7 +61,7 @@
 
 (defn listen-fullscreen []
   (let [btn (dom/getElement "fullscreen")]
-    (events/listen btn events/EventType.MOUSEDOWN fullscreen)))
+    (listen-touch btn true fullscreen)))
 
 (defn process-ci [ci]
   (setup-keys ci controls-scheme))
