@@ -4,6 +4,9 @@
   "src/main"
   "src/test"]
 
+ :dev-http {8000 {
+                  :root "public"
+                  :host "0.0.0.0"}}
  :dependencies [[refactor-nrepl "2.4.0"]
                 [cider/cider-nrepl "0.22.4"]
                 [iced-nrepl "0.7.0"]]
@@ -28,6 +31,4 @@
 
  :builds
  {:main {:target :browser
-         :modules {:main {:init-fn app.core/main!}}
-         :devtools {:http-root "public"
-                    :http-port 9300}}}}
+         :modules {:main {:init-fn app.core/main!}}}}}
