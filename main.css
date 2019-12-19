@@ -1,0 +1,79 @@
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template: auto auto / auto;
+    grid-row-gap: 20px;
+    justify-content: center;
+    align-items: start;
+}
+
+.playerbox {
+    position: relative;
+}
+
+.keys {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    height: 100px;
+}
+
+#left, #right, #up, #down {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    background-color: rgba(50, 50, 50, 0.5);
+    height: 30px;
+    width: 30px;
+    user-select: none;
+}
+#left {
+    bottom: 35px;
+    left: 5px;
+}
+#right {
+    bottom: 35px;
+    left: 65px;
+}
+#up {
+    bottom: 65px;
+    left: 35px;
+}
+#down {
+    bottom: 5px;
+    left: 35px
+}
+#enter, #space {
+    position: absolute;
+    border: 1px solid #ccc;
+    background-color: rgba(50, 50, 50, 0.5);
+    height: 40px;
+    width: 40px;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+}
+#space {
+    bottom: 40px;
+    right: 100px;
+}
+#enter {
+    bottom: 40px;
+    right: 50px;
+}
+
+canvas {
+    width: 100%;
+    height: 100%;
+}
