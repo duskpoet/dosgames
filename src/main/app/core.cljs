@@ -30,11 +30,11 @@
           el (dom/getElement id)]
       (events/listen
        el
-       events/EventType.POINTERDOWN
+       events/EventType.MOUSEDOWN
        #(.simulateKeyEvent ci code true))
       (events/listen
        el
-       events/EventType.POINTERUP
+       events/EventType.MOUSEUP
        #(.simulateKeyEvent ci code false)))))
 
 (defn fullscreen []
@@ -43,7 +43,7 @@
 
 (defn listen-fullscreen []
   (let [btn (dom/getElement "fullscreen")]
-    (events/listen btn "click" fullscreen)))
+    (events/listen btn events/EventType.MOUSEDOWN fullscreen)))
 
 (defn process-ci [ci]
   (setup-keys ci controls-scheme))
