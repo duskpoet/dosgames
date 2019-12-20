@@ -91,14 +91,6 @@
        false
        #(.simulateKeyEvent ci code false)))))
 
-(defn fullscreen []
-  (let [el (dom/getElement "player-container")]
-    (requestFullScreen el)))
-
-(defn listen-fullscreen []
-  (let [btn (dom/getElement "fullscreen")]
-    (listen-touch btn true fullscreen)))
-
 (defn process-ci [ci]
   (setup-keys ci controls-scheme))
 
@@ -106,7 +98,6 @@
   (let [p1 (.extract fs "chip.zip")
         p2 (.then p1 #(main #js ["-c" "CHIPS.EXE"]))]
     (.then p2 process-ci)
-    (listen-fullscreen)
     (js/setTimeout set-positions 1000)))
 
 (defn launch []
