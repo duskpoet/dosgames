@@ -229,7 +229,7 @@ return (main.cljs$core$IFn$_invoke$arity$1 ? main.cljs$core$IFn$_invoke$arity$1(
 }));
 p2.then(app.core.process_ci);
 
-return setTimeout(app.core.set_positions,(1000));
+return setInterval(app.core.set_positions,(1000));
 });
 app.core.launch = (function app$core$launch(){
 var el = goog.dom.getElement("playerbox");
