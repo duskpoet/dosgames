@@ -98,7 +98,7 @@
   (let [p1 (.extract fs "chip.zip")
         p2 (.then p1 #(main #js ["-c" "CHIPS.EXE"]))]
     (.then p2 process-ci)
-    (js/setTimeout set-positions 1000)))
+    (js/setInterval set-positions 1000)))
 
 (defn launch []
   (let [el (dom/getElement "playerbox")
