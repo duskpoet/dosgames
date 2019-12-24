@@ -1,8 +1,6 @@
 ;; shadow-cljs configuration
 {:source-paths
- ["src/dev"
-  "src/main"
-  "src/test"]
+  ["src/main"]
 
  :nrepl {:middleware [
                       cider.piggieback/wrap-cljs-repl]}
@@ -11,7 +9,8 @@
                   :root "public"
                   :host "0.0.0.0"}}
 
- :dependencies [[cider/cider-nrepl "0.22.4"]
+ :dependencies [[binaryage/oops "0.7.0"]
+                [cider/cider-nrepl "0.22.4"]
                 [cider/piggieback "0.4.2"]]
 
  :builds
