@@ -55,7 +55,7 @@
 
 (defn launch []
   (let [el (dom/getElement "playerbox")
-        runner (js/Dos el #js {:cycles 1000})]
+        runner (js/Dos el #js {:cycles 2000})]
     (.ready runner on-ready)))
 
 (defn main! []

@@ -5,23 +5,24 @@
 
 (def THRESHOLD 10)
 
-(defn sqr [x] (bit-shift-left x 1))
-
-(def motion (atom nil))
-(def codes {:up 38
+(def CODES {:up 38
             :down 40
             :left 37
             :right 39})
 
+(defn sqr [x] (bit-shift-left x 1))
+
+(def motion (atom nil))
+
 (defn control-ci [ci action]
   (if (nil? action)
     (when-not (nil? @motion)
-      (.simulateKeyEvent ci (codes @motion false))
+      (.simulateKeyEvent ci (CODES @motion) false)
       (reset! motion nil))
     (when-not (= @motion action)
-      (.simulateKeyEvent ci (codes @motion false))
+      (when-not (nil? @motion) (.simulateKeyEvent ci (CODES @motion) false))
       (reset! motion action)
-      (.simulateKeyEvent ci (codes @motion true)))))
+      (.simulateKeyEvent ci (CODES @motion) true))))
 
 (defn setup-mouse [ci]
   (let [el (dom/getElement "container")
@@ -35,11 +36,13 @@
                         r (js/Math.sqrt (+ (sqr deltaX) (sqr deltaY)))
                         action (cond
                                 (< r THRESHOLD) nil
-                                ((and (neg? deltaY) (> absY absX) :up))
-                                ((and (pos? deltaY) (> absY absX) :down))
-                                ((and (neg? deltaX) (> absX absY) :left))
-                                ((and (pos? deltaX) (> absX absY) :right)))]
+                                (and (neg? deltaY) (> absY absX)) :down
+                                (and (pos? deltaY) (> absY absX)) :up
+                                (and (neg? deltaX) (> absX absY)) :right
+                                (and (pos? deltaX) (> absX absY)) :left)]
                       (control-ci ci action)))
-        on-start #(reset! start-evt %)]
+        on-start #(reset! start-evt %)
+        on-release #(control-ci ci nil)]
     (events/listen el events/EventType.TOUCHSTART on-start)
-    (events/listen el events/EventType.TOUCHMOVE on-move)))
+    (events/listen el events/EventType.TOUCHMOVE on-move)
+    (events/listen el events/EventType.TOUCHEND on-release)))
