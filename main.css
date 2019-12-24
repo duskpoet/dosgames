@@ -2,36 +2,26 @@ html,
 body {
     width: 100%;
     height: 100%;
+    overflow: hidden;
 }
 
-#player-container {
+#container {
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
 }
 
-.playerbox-container {
+.playerbox {
     position: relative;
-    width: 86%;
+    width: 76%;
     height: 100%;
 }
 
 #keys {
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
 }
 
-#left, #right, #up, #down {
-    position: absolute;
-    border-radius: 50%;
-    border: 1px solid #ccc;
-    background-color: rgba(50, 50, 50, 0.5);
-    user-select: none;
-}
-#enter, #space {
+#space, #r {
     position: absolute;
     border: 1px solid #ccc;
     background-color: rgba(50, 50, 50, 0.5);
@@ -41,6 +31,16 @@ body {
     justify-content: center;
     align-items: center;
     user-select: none;
+
+    bottom: 5%;
+    height: 5%;
+    width: 5%;
+}
+#space {
+    left: 50%;
+}
+#r {
+    right: 50%;
 }
 
 canvas {
