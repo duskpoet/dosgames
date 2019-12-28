@@ -103,7 +103,7 @@
 
 (defn launch []
   (let [el (dom/getElement "playerbox")
-        runner (js/Dos el #js {:cycles 2000 :log (fn [] ())})]
+        runner (js/Dos el #js {:cycles 1000 :log (fn [] ())})]
     (.ready runner on-ready)))
 
 (defn main! []
